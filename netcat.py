@@ -12,7 +12,7 @@ def execute(cmd):
         return
     output = subprocess.check_output(shlex.split(cmd), stderr=subprocess.STDOUT)
 
-    return output.decode
+    return output.decode()
 
 class NetCat():
         def __init__(self, args, buffer=None):
@@ -24,7 +24,7 @@ class NetCat():
         def handle(self, client_socket):
             if self.args.execute:
                 output = execute(self.args.execute)
-                client_socket.send(output.encode)
+                client_socket.send(output.encode())
             elif self.args.upload:
                 file_buffer = b''
                 while True:
@@ -79,7 +79,6 @@ class NetCat():
                         if recv_len < 4096:
                             break
                     if response:
-                        a
                         print(response)
                         buffer = input('> ')
                         buffer += '\n'
